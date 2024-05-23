@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import './global.css'
 import {BrowserRouter as Router } from "react-router-dom"
 import AppRoutes from './AppRoutes'
-import Auth0ProviderWithNavigate from './Auth/Auth0ProviderWithNavigate'
+import Auth0ProviderWithNavigate from './auth/Auth0ProviderWithNavigate'
 import {  QueryClient, QueryClientProvider } from "react-query";
  
 

@@ -19,7 +19,7 @@ const AuthCallbackPage = () => {
 
         }
         navigate("/")
-    }, [createUser, navigate, user ]);
+    }, [createUser, navigate, user  ]);
 
     return <>Loading.......  so Chill....</>
 
