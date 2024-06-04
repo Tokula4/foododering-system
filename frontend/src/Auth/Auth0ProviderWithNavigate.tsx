@@ -1,6 +1,5 @@
 
-import { useCreateMyUser } from '@/api/MyUserApi';
-import {   AppState, Auth0Provider, User } from '@auth0/auth0-react';
+import {    Auth0Provider } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -9,7 +8,7 @@ type Props =  {
 }
 
 const Auth0ProviderWithNavigate = ({ children } : Props) => {
-const {createUser} = useCreateMyUser()
+
 
    const navigate =  useNavigate();  
     const domain = import.meta.env.VITE_AUTH0_DOMAIN;
@@ -21,10 +20,8 @@ const {createUser} = useCreateMyUser()
         throw new Error("unable to initialise auth ")
     }
 
-    const onRedirectCallback = ( appState?: AppState, user?: User  )=>{
-        if(user?.sub && user?.email){
-            createUser({auth0Id: user.sub, email: user.email})
-        }
+    const onRedirectCallback = ()=>{
+     
         navigate("/auth-callback")
        
 

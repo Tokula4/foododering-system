@@ -1,6 +1,28 @@
 import { Request, Response } from "express";
 import User from "../models/user";
 
+
+
+const getCurrentUser = async (req: Request, res :Response) =>{
+    try{
+        const currentUser = await User.findOne({_id: req.userId});
+        if(!currentUser){
+            return res.status(404).json({message:"User not found"})
+        }
+
+        res.json(currentUser)
+
+    }
+    catch (error){
+        console.log(error);
+        return res.status(500).json({message: "Something went wrong "})
+
+    }
+
+}
+
+
+
 const createCurrentUser = async (req: Request, res :Response) =>{
     // check if the user exist
     //create the user if it doesn't exist 
@@ -29,7 +51,40 @@ try{
 
 };
 
+const updateCurrentUser = async(req: Request , res: Response) => {
+    try{
+        const{
+            name,
+            RoomNumber,
+            Hostel
+        } = req.body;
+        const user = await User.findById(req.userId)
+        if(!user){
+            return res.status(404).json({message: "User not Found "})// checking if the user exist or not
+ }
+
+ user.name = name ;
+ user.RoomNumber = RoomNumber;
+ user.Hostel = Hostel;
+  
+ await user.save();
+ 
+ 
+
+
+res.send(user);
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({message : "Error Updating User"});
+    }
+};
+
 export default{
+    getCurrentUser,
     createCurrentUser,
+    updateCurrentUser,
+  
+
 
 }
