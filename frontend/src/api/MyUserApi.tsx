@@ -39,8 +39,7 @@ export const useGetMyUser = () => {
             toast.error(error.toString())
          }
 
-         return{ currentUser,
-            isLoading }
+         return{ currentUser,isLoading }
 }
 
 type CreateUserRequest = {

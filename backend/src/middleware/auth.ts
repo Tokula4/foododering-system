@@ -39,8 +39,10 @@ export const jwtCheck = auth({
         if(!user){
           return res.sendStatus(401)
         }
+
         req.auth0Id = auth0Id as string
-        req.userId = user._id.toString()
+
+        req.userId = user.id.toString();
         next();
       }
         catch(error){
